@@ -1,0 +1,99 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+@font-face {
+    font-family: "URWDINCond-Black";
+    src: url("https://prod-ne-cdn-content.puregym.com/fonts/39E353_0_0.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "URWDINCond-Black";
+    src: url("https://prod-ne-cdn-content.puregym.com/fonts/39E353_1_0.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
+
+$brand-color: #00999d;
+$brand-bright-color: #00d5da;
+$brand-lightest-color: #bae1e2;
+$brand-light-color: #00b7bc;
+$brand-dark-color: #017073;
+$brand-darkest-color: #005257;
+$brand-secondary-color: #48929a; /* legacy colour from Indicia, used for SASS lighten because the new one turns neon when lightened */
+$brand-alt-color: #ff6129;
+$brand-dark-alt-color: #c73500;
+$brand-alt2-color: #ffb13d;
+$brand-alt3-color: #ffd000;
+$brand-premium-color: #2f1681;
+$brand-dark-text-color: #00383a;
+$brand-dull-color: #cce3e3;
+
+$information: #0a45a3;
+$accessible: #3599ef;
+
+/* 6(0) shades of grey */
+$shade-darkest-color: #4d4d4d;
+$shade-dark-color: #727272;
+$shade-medium-color: #b6b6b6;
+$shade-color: #e0e0e0;
+$shade-light-color: #ececec;
+$shade-lightest-color: #fafafa;
+
+/* specific promotion styles  */
+$protein-yellow: #fbea1d;
+$protein-green: #4db3b0;
+$protein-light-green: #daefee;
+
+/* New class categories */
+$mindbody-solid: #9bcdc9;
+$mindbody-text: #e4feff;
+$mindbody-grid: #d7eceb;
+$sculpttone-solid: #1a4b72;
+$sculpttone-text: #00d5da;
+$sculpttone-grid: #b9cbdb;
+$cardio-solid: #f1605a;
+$cardio-text: #212121;
+$cardio-grid: #f5dbd8;
+$functional-solid: #0d0d0d;
+$functional-text: #ffffff;
+$functional-grid: #c5c5c5;
+$induction-solid: #f2f2f2;
+$induction-text: #212121;
+$induction-grid: #c5c5c5;
+$digital-solid: #212121;
+$digital-text: #ffffff;
+$digital-grid: #c5c5c5;
+
+$facebook: #3b5998;
+$twitter: #1da1f2;
+$strava: #fc4c02;
+
+/* generic colours */
+$primary: #ffffff;
+$secondary: #212121; /* black isn't really black, it's really really dark grey - this allows photos to look darker than brand colours */
+$error: #d43047;
+$success: #7fb9a4;
+
+// Form fields on gray background
+$input-border-color: #929292;
+
+// Color abstraction
+$modal-border-color: $shade-medium-color !default;
+$modal-inner-background: $primary !default;
+$modal-mobile-header: $brand-color !default;
+$modal-color: $primary;
+$link-color: $brand-dark-color;
+$link-hover-color: $brand-darkest-color;
+
+$brand-font-family: "URWDINCond-Black", Helvetica, Arial, sans-serif;
+
+
