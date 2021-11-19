@@ -11,7 +11,7 @@ class Show extends Component
 
     public function render()
     {
-        $list = Post::all()->sortByDesc('created_at');
+        $list = Post::all()->sortByDesc('created_utc');
 
         return view('livewire.post.show', [ 'list' => $list ]);
     }

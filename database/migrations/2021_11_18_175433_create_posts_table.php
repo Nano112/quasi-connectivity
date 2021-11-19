@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->text('url');
             $table->boolean('approved')->default(false);
+            $table->timestamp('created_utc');
             $table->timestamps();
         });
     }

@@ -1,12 +1,4 @@
 <x-jet-form-section submit="createItem">
-    <x-slot name="title">
-        {{ __('Create New To-Do Item') }}
-    </x-slot>
-
-    <x-slot name="description">
-        {{ __('Have you found a new Quasi connectivity post ?') }}
-    </x-slot>
-
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="url" value="{{ __('Post url') }}" />

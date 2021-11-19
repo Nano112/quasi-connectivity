@@ -1,45 +1,18 @@
-<div class="timer" x-data="timer({{ now()->getPreciseTimestamp(3) }})" x-init="init();">
-    <p x-text="time().days"></p>
-    <p x-text="time().hours"></p>
-    <p x-text="time().minutes"></p>
-    <p x-text="time().seconds"></p>
-    <div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-        <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span class="font-mono text-5xl countdown">
-            <span :style="`--value:${time().days};`"></span>
-          </span>
-              days
 
-        </div>
-        <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span class="font-mono text-5xl countdown">
-            <span :style="`--value:${time().hours};`"></span>
-          </span>
-              hours
 
-        </div>
-        <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span class="font-mono text-5xl countdown">
-            <span :style="`--value:${time().minutes};`"></span>
-          </span>
-              min
-
-        </div>
-        <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span class="font-mono text-5xl countdown">
-            <span :style="`--value:${time().seconds};`"></span>
-          </span>
-              sec
-
-        </div>
-      </div>
-
+<div class="flex justify-center timer" x-data="timer({{ now()->getPreciseTimestamp(3) }})" x-init="init();">
+    <div class="grid grid-flow-col gap-5 text-center auto-cols-max" x-data="{times: [
+        'days', 'hours', 'min', 'sec']}">
+        <template x-for="(label, index) in times"  :key="index">
+            <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+                <span class="font-mono text-4xl md:text-8xl countdown">
+                    <span :style="`--value:${timeArray()[index]};`"></span>
+                </span>
+                <div x-text="label"></div>
+            </div>
+        </template>
     </div>
 </div>
-
-<div>
-
-
 
 @push('scripts')
     <script>
@@ -54,7 +27,7 @@
                     }, 1000);
                 },
                 setRemaining() {
-                    const diff =  new Date().getTime() - this.expiry;
+                    const diff = new Date().getTime() - this.expiry;
                     this.remaining = parseInt(diff / 1000);
                 },
                 days() {
@@ -90,6 +63,14 @@
                         minutes: this.format(this.minutes().value),
                         seconds: this.format(this.seconds().value),
                     }
+                },
+                timeArray() {
+                    return [
+                        this.format(this.days().value),
+                        this.format(this.hours().value),
+                        this.format(this.minutes().value),
+                        this.format(this.seconds().value),
+                    ]
                 },
             }
         }
