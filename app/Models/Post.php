@@ -3,36 +3,70 @@
 namespace App\Models;
 
 use App\Http\Utils\RedditConnector;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['url', 'approved', 'created_utc'];
+    protected $fillable = ['post_id', 'url', 'approved', 'created_utc'];
+    protected $casts = [
+        'created_utc' => 'datetime',
+    ];
 
     public function getTitleAttribute()
     {
-        return RedditConnector::getTitle($this->url);
+        return Cache::rememberForever("$this->post_id-title", function () {
+            try {
+                return RedditConnector::getTitle($this->url);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
     }
 
     public function getAuthorAttribute()
     {
-        return RedditConnector::getAuthor($this->url);
+        return Cache::rememberForever("$this->post_id-author", function () {
+            try {
+                return RedditConnector::getAuthor($this->url);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
     }
 
     public function getSubredditAttribute()
     {
-        return RedditConnector::getSubreddit($this->url);
+        return Cache::rememberForever("$this->post_id-subreddit", function () {
+            try {
+                return RedditConnector::getSubreddit($this->url);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
     }
 
     public function getScoreAttribute()
     {
-        return RedditConnector::getScore($this->url);
+        return Cache::rememberForever("$this->post_id-score", function () {
+            try {
+                return RedditConnector::getScore($this->url);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
     }
 
     public function getCommentCountAttribute()
     {
-        return RedditConnector::getCommentCount($this->url);
+        return Cache::rememberForever("$this->post_id-comment_count", function () {
+            try {
+                return RedditConnector::getCommentCount($this->url);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
     }
 }

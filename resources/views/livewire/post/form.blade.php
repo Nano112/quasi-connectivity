@@ -3,7 +3,10 @@
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="url" value="{{ __('Post url') }}" />
             <x-jet-input id="url" type="text" class="block w-full mt-1" wire:model.defer="url" autocomplete="url" />
+
             <x-jet-input-error for="url" class="mt-2" />
+            <x-jet-input-error for="created_utc" class="mt-2" />
+            <x-jet-input-error for="post_id" class="mt-2" />
         </div>
     </x-slot>
 

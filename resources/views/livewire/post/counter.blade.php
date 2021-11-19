@@ -1,6 +1,6 @@
 
 
-<div class="flex justify-center timer" x-data="timer({{ now()->getPreciseTimestamp(3) }})" x-init="init();">
+<div class="flex justify-center timer" x-data="timer({{ $timestamp }})" x-init="init();">
     <div class="grid grid-flow-col gap-5 text-center auto-cols-max" x-data="{times: [
         'days', 'hours', 'min', 'sec']}">
         <template x-for="(label, index) in times"  :key="index">

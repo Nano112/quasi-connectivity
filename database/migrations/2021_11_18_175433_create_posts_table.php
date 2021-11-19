@@ -15,6 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('post_id')->unique();
             $table->text('url');
             $table->boolean('approved')->default(false);
             $table->timestamp('created_utc');

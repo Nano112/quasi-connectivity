@@ -2,7 +2,7 @@
     <table class="w-full table-auto">
         <thead>
             <tr>
-                <th class="px-4 py-2">Item</th>
+                <th class="px-4 py-2">title</th>
                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
@@ -10,7 +10,7 @@
         <tbody>
             @foreach ($list as $item)
                 <tr @if ($loop->even)class="bg-grey"@endif>
-                    <td class="px-4 py-2 border">{{ $item->url }}</td>
+                    <td class="px-4 py-2 border">{{ $item->title }}</td>
                     <td class="px-4 py-2 border">@if ($item->approved)Approved @else Not Approved @endif</td>
                     <td class="px-4 py-2 border">
                         <button class="btn btn-info">info</button>

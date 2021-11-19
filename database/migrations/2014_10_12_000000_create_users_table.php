@@ -24,6 +24,12 @@ class CreateUsersTable extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
+
+        User::create([
+            'name' => 'nano',
+            'email' => 'harrisonbastian.nano@gmail.com',
+            'password' => Hash::make('quasi-connectivity'),
+        ]);
     }
 
     /**
