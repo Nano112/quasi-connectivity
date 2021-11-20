@@ -39,7 +39,6 @@
         </div>
     </div>
 
-    @auth
         <div x-data="{ shown: false }" x-intersect:enter.full="shown = true">
             <div class="flex items-center justify-center h-screen">
                 <div x-show="shown" x-transition:enter="transition ease-out duration-500"
@@ -65,7 +64,6 @@
                 </div>
             </div>
         </div>
-    @endauth
 
 
 </x-app-layout>
