@@ -136,4 +136,31 @@ class RedditConnector
         $id = $post['id'];
         return $id;
     }
+
+    #function to get the post description from the url
+    public static function getDescription($url)
+    {
+        $post = self::getPosts($url);
+        if (!$post) {
+            return null;
+        }
+        $description = $post['selftext'];
+        return $description;
+    }
+
+
+    #function to get the post image from the url
+    public static function getImage($url)
+    {
+        $post = self::getPosts($url);
+        if (!$post) {
+            return null;
+        }
+        $image = Arr::get($post, 'url');
+        #verify the image is an image url using extension
+        if (strpos($image, 'jpg') !== false || strpos($image, 'png') !== false || strpos($image, 'gif') !== false) {
+            return $image;
+        }
+        return '';
+    }
 }

@@ -69,4 +69,26 @@ class Post extends Model
             }
         });
     }
+
+    public function getDescriptionAttribute()
+    {
+        return Cache::rememberForever("$this->post_id-description", function () {
+            try {
+                return RedditConnector::getDescription($this->url);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
+    }
+
+    public function getImageAttribute()
+    {
+        return Cache::rememberForever("$this->post_id-image", function () {
+            try {
+                return RedditConnector::getImage($this->url);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
+    }
 }
