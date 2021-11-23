@@ -22,6 +22,9 @@ Route::get('/', function() {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+        Route::get('/', function () {
+            return view('dashboard');
+        })->name('dashboard');
         Route::resource('users', UserController::class, [
             'names' => [
                 'index' => 'admin.users.index',

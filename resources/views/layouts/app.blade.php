@@ -27,10 +27,12 @@
         @stack('scripts')
     </head>
     <body class="font-sans antialiased">
-
+        <x-tall-notification />
         <x-jet-banner />
 
         <div class="min-h-screen bg-base-content">
+
+
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
