@@ -10,15 +10,15 @@ if (Auth::check()) {
 }
 @endphp
 
-<nav x-data="{ open: false }" class="text-white bg-gray-800 border-b border-gray-800">
+<nav x-data="{ open: false }" class="text-white bg-white border-b border-white">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div class="flex justify-center h-16">
+        <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
                     <a href="{{ route('home') }}">
-                        <img class="block w-auto h-9" src="{{ asset('img/logo1.png') }}" />
+                        <img class="block w-auto h-9" src="{{ asset('img/logo.png') }}" />
                     </a>
                 </div>
 

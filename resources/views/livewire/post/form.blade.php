@@ -1,22 +1,13 @@
-<x-jet-form-section submit="createItem">
-    <x-slot name="form">
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="url" value="{{ __('Post url') }}" />
-            <x-jet-input id="url" type="text" class="block w-full mt-1" wire:model.defer="url" autocomplete="url" />
+<form wire:submit.prevent="createItem">
+    <div class="form-control">
+        <div class="relative flex flex-col">
+            <input type="url" class="w-full sm:pr-16 input input-primary input-bordered mb-4" id="url"
+                placeholder="Reddit Post Url" wire:model.defer="url" autocomplete="url">
 
-            <x-jet-input-error for="url" class="mt-2" />
-            <x-jet-input-error for="created_utc" class="mt-2" />
-            <x-jet-input-error for="post_id" class="mt-2" />
+            <button type="submit" class="sm:absolute top-0 right-0 sm:rounded-l-none btn btn-primary self-center max-w-32">Submit post</button>
         </div>
-    </x-slot>
-
-    <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-jet-action-message>
-
-        <x-jet-button>
-            {{ __('Save') }}
-        </x-jet-button>
-    </x-slot>
-</x-jet-form-section>
+        @error('url') <span class="text-error">{{ $message }}</span> @enderror
+        @error('created_utc') <span class="text-error">{{ $message }}</span> @enderror
+        @error('post_id') <span class="text-error">{{ $message }}</span> @enderror
+    </div>
+</form>

@@ -27,9 +27,9 @@ class CreateUsersTable extends Migration
         });
 
         User::create([
-            'name' => 'nano',
-            'email' => 'harrisonbastian.nano@gmail.com',
-            'password' => Hash::make('quasi-connectivity'),
+            'name' => config('app.admin_name'),
+            'email' => config('app.admin_email'),
+            'password' => Hash::make(config('app.admin_password')),
         ]);
     }
 

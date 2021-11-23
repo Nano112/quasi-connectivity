@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Home;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function() {
     return view('post');
 })->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+        Route::get('/', function () {
+            return view('dashboard');
+        })->name('dashboard');
+        Route::resource('users', UserController::class, [
+            'names' => [
+                'index' => 'admin.users.index',
+                'show' => 'admin.user.show',
+                'create' => 'admin.user.create',
+                'edit' => 'admin.user.edit',
+                'destroy' => 'admin.user.destroy',
+            ]
+        ]);
+    });
+});
 

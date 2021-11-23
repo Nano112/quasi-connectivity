@@ -56,6 +56,12 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'admin_name' => env('ADMIN_NAME', 'Admin'),
+
+    'admin_email' => env('ADMIN_EMAIL', 'admin@quasi-connectivity.com'),
+
+    'admin_password' => env('ADMIN_PASSWORD', 'admin'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

@@ -2,6 +2,9 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     mode: 'jit',
+    presets: [
+        require('./vendor/tanthammar/tall-forms/resources/stubs/tailwindcss/2.0/tall-forms-preset.js'),
+    ],
     purge: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
@@ -30,8 +33,8 @@ module.exports = {
         themes: [
           {
             'mytheme': {
-              'primary': '#570df8',
-              'primary-focus': '#4506cb',
+              'primary': '#ff4500',
+              'primary-focus': '#c43500',
               'primary-content': '#ffffff',
               'secondary': '#f000b8',
               'secondary-focus': '#bd0091',

@@ -1566,11 +1566,23 @@ function onMutate(mutations) {
   addedAttributes.forEach((attrs, el) => {
     onAttributeAddeds.forEach((i) => i(el, attrs));
   });
+  addedNodes.forEach((node) => {
+    node._x_ignoreSelf = true;
+    node._x_ignore = true;
+  });
   for (let node of addedNodes) {
     if (removedNodes.includes(node))
       continue;
+    delete node._x_ignoreSelf;
+    delete node._x_ignore;
     onElAddeds.forEach((i) => i(node));
+    node._x_ignore = true;
+    node._x_ignoreSelf = true;
   }
+  addedNodes.forEach((node) => {
+    delete node._x_ignoreSelf;
+    delete node._x_ignore;
+  });
   for (let node of removedNodes) {
     if (addedNodes.includes(node))
       continue;
@@ -1814,10 +1826,11 @@ function generateEvaluatorFromString(dataStack, expression, el) {
       let promise = func(func, completeScope).catch((error2) => handleError(error2, el, expression));
       if (func.finished) {
         runIfTypeOfFunction(receiver, func.result, completeScope, params, el);
+        func.result = void 0;
       } else {
         promise.then((result) => {
           runIfTypeOfFunction(receiver, result, completeScope, params, el);
-        }).catch((error2) => handleError(error2, el, expression));
+        }).catch((error2) => handleError(error2, el, expression)).finally(() => func.result = void 0);
       }
     }
   };
@@ -2444,6 +2457,45 @@ function modifierValue(modifiers, key, fallback) {
   return rawValue;
 }
 
+// packages/alpinejs/src/clone.js
+var isCloning = false;
+function skipDuringClone(callback, fallback = () => {
+}) {
+  return (...args) => isCloning ? fallback(...args) : callback(...args);
+}
+function clone(oldEl, newEl) {
+  if (!newEl._x_dataStack)
+    newEl._x_dataStack = oldEl._x_dataStack;
+  isCloning = true;
+  dontRegisterReactiveSideEffects(() => {
+    cloneTree(newEl);
+  });
+  isCloning = false;
+}
+function cloneTree(el) {
+  let hasRunThroughFirstEl = false;
+  let shallowWalker = (el2, callback) => {
+    walk(el2, (el3, skip) => {
+      if (hasRunThroughFirstEl && isRoot(el3))
+        return skip();
+      hasRunThroughFirstEl = true;
+      callback(el3, skip);
+    });
+  };
+  initTree(el, shallowWalker);
+}
+function dontRegisterReactiveSideEffects(callback) {
+  let cache = effect;
+  overrideEffect((callback2, el) => {
+    let storedEffect = cache(callback2);
+    release(storedEffect);
+    return () => {
+    };
+  });
+  callback();
+  overrideEffect(cache);
+}
+
 // packages/alpinejs/src/utils/debounce.js
 function debounce(func, wait) {
   var timeout;
@@ -2497,44 +2549,6 @@ function getStores() {
   return stores;
 }
 
-// packages/alpinejs/src/clone.js
-var isCloning = false;
-function skipDuringClone(callback, fallback = () => {
-}) {
-  return (...args) => isCloning ? fallback(...args) : callback(...args);
-}
-function clone(oldEl, newEl) {
-  newEl._x_dataStack = oldEl._x_dataStack;
-  isCloning = true;
-  dontRegisterReactiveSideEffects(() => {
-    cloneTree(newEl);
-  });
-  isCloning = false;
-}
-function cloneTree(el) {
-  let hasRunThroughFirstEl = false;
-  let shallowWalker = (el2, callback) => {
-    walk(el2, (el3, skip) => {
-      if (hasRunThroughFirstEl && isRoot(el3))
-        return skip();
-      hasRunThroughFirstEl = true;
-      callback(el3, skip);
-    });
-  };
-  initTree(el, shallowWalker);
-}
-function dontRegisterReactiveSideEffects(callback) {
-  let cache = effect;
-  overrideEffect((callback2, el) => {
-    let storedEffect = cache(callback2);
-    release(storedEffect);
-    return () => {
-    };
-  });
-  callback();
-  overrideEffect(cache);
-}
-
 // packages/alpinejs/src/datas.js
 var datas = {};
 function data(name, callback) {
@@ -2568,10 +2582,11 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.5.1",
+  version: "3.5.2",
   flushAndStopDeferringMutations,
   disableEffectScheduling,
   setReactivityEngine,
+  closestDataStack,
   skipDuringClone,
   addRootSelector,
   deferMutations,

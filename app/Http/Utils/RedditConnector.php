@@ -43,11 +43,19 @@ class RedditConnector
         return strpos($url, 'comments') !== false;
     }
 
+    #function that checks if the url is a r/redstone url
+    public static function isValidRedditSubredditUrl($url)
+    {
+        if (!self::isValidRedditUrl($url)) {
+            return false;
+        }
+        return strpos($url, 'r/redstone') !== false;
+    }
 
     public static function getPosts($url)
     {
         $url = self::cleanUrl($url);
-        if (!self::isValidRedditPostUrl($url)) {
+        if (!self::isValidRedditSubredditUrl($url)) {
             return null;
         }
         try {
