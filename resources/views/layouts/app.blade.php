@@ -4,6 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta property="og:title" content="Quasi Connectivity" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://quasi-connectivity.com" />
+        <meta property="og:image" content="http://quasi-connectivity/img/logo.png" />
+        <meta property="og:description" content="Quasi connectivity was last discovered {{ \App\Models\Post::getLastCreatedUtc()->diffForHumans(null, false, false, 3) }}" />
+        <meta name="theme-color" content="#FF0000">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
