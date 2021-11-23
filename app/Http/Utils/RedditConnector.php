@@ -51,7 +51,7 @@ class RedditConnector
             return null;
         }
         try {
-            return Cache::rememberForever($url, function() use ($url) {
+            return Cache::rememberForever($url, function () use ($url) {
                 $json = Http::get("$url.json")->json();
                 return Arr::get($json, '0.data.children.0.data');
             });
@@ -152,15 +152,86 @@ class RedditConnector
     #function to get the post image from the url
     public static function getImage($url)
     {
+        try {
+            $post = self::getPosts($url);
+            if (!$post) {
+                info('no post');
+                return null;
+            }
+            info('post found');
+            $image = Arr::get($post, 'media_metadata');
+            if (!$image) {
+                $image = Arr::get($post, 'url');
+                if (strpos($image, 'jpg') !== false || strpos($image, 'png') !== false || strpos($image, 'gif') !== false) {
+                info('image found through url');
+                    return $image;
+                }
+                info('no image found');
+                return null;
+            }
+            info('media_metadata found');
+            $image = $image[array_key_first($image)];
+            $image = Arr::get($image, 's.u');
+            $image = str_replace('preview', 'i', $image);
+            return $image;
+        } catch (\Exception $e) {
+            info('error: ' . $e->getMessage() . ' at ' . $e->getLine() . ' in ' . $e->getFile() . ' in ' . $e->getTraceAsString());
+            return null;
+        }
+        $image = Arr::get($post, 'url');
+        if (strpos($image, 'jpg') !== false || strpos($image, 'png') !== false || strpos($image, 'gif') !== false) {
+            return $image;
+        }
+
+    }
+
+    #function that returns an array of url's contained in a string
+    private static function getUrlsFromString($string)
+    {
+        $regex = '/https?\:\/\/[^\" ]+/i';
+        preg_match_all($regex, $string, $matches);
+        return $matches[0];
+    }
+
+    #function to filter array of url's and return a new array with only url's that contain "video"
+    private static function filterUrls($urls)
+    {
+        $filtered = [];
+        foreach ($urls as $url) {
+            if (strpos($url, 'video') !== false) {
+                $filtered[] = $url;
+            }
+        }
+        return $filtered;
+    }
+
+    #function to extract the video id e.g. "n7fgh3c9lr081" from video url
+    private static function getVideoId($url)
+    {
+        $url = explode('video/', $url)[1];
+        $id = explode('/player', $url)[0];
+        return $id;
+    }
+
+    #function to get the video url from the post url
+    public static function getVideo($url)
+    {
         $post = self::getPosts($url);
         if (!$post) {
             return null;
         }
-        $image = Arr::get($post, 'url');
-        #verify the image is an image url using extension
-        if (strpos($image, 'jpg') !== false || strpos($image, 'png') !== false || strpos($image, 'gif') !== false) {
-            return $image;
+        $video = Arr::get($post, 'media.reddit_video.fallback_url');
+        $video = explode('?', $video)[0];
+        if(empty($video)){
+            $urls =  self::filterUrls(self::getUrlsFromString(self::getDescription($url)));
+            if(!empty($urls)){
+                $id = self::getVideoId($urls[0]);
+                return "https://v.redd.it/$id/DASH_720.mp4";
+            }
+            return null;
         }
-        return '';
+        return $video;
     }
+
+    //https://external-preview.redd.it/BEBYRbFu-x_8Pvdfg-2-8m97nPqp67oz8iSX8YwMlUY.png?width=960&crop=smart&format=pjpg&auto=webp&s=cf504c0d008346fd5306918152f85ea14912d336
 }
