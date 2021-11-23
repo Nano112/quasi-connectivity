@@ -15,6 +15,15 @@ class Post extends Model
         'created_utc' => 'datetime',
     ];
 
+    #return the last created_utc post timestamp
+    public static function getLastCreatedUtc()
+    {
+        $lastCreatedUtc = Cache::remember('lastCreatedUtc', 60, function () {
+            return Post::orderBy('created_utc', 'desc')->first()->created_utc;
+        });
+        return $lastCreatedUtc;
+    }
+
     public function getTitleAttribute()
     {
         return Cache::rememberForever("$this->post_id-title", function () {
