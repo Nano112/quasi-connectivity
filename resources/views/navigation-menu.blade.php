@@ -18,7 +18,7 @@ if (Auth::check()) {
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
                     <a href="{{ route('home') }}">
-                        <img class="block w-auto h-9" src="{{ asset('img/logo1.png') }}" />
+                        <img class="block w-auto h-9" src="{{ asset('img/logo.png') }}" />
                     </a>
                 </div>
 
