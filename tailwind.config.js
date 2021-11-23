@@ -14,6 +14,14 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            scale: {
+                '98': '0.98',
+                '99': '0.99',
+                '101': '1.01',
+                '102': '1.02',
+                '103': '1.03',
+                '104': '1.04',
+            },
         },
     },
 

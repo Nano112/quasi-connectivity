@@ -91,4 +91,15 @@ class Post extends Model
             }
         });
     }
+
+    public function getVideoAttribute()
+    {
+        return Cache::rememberForever("$this->post_id-video", function () {
+            try {
+                return RedditConnector::getVideo($this->url);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        });
+    }
 }

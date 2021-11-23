@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex items-center justify-center h-screen">
+    <div class="flex items-center justify-center h-screen w-full">
         <div x-data="{ shown: false }" x-intersect:enter.full="shown = true" x-intersect:leave.full="shown = false">
 
             <div x-show="shown" x-transition:enter="transition ease-out duration-500"
@@ -39,31 +39,31 @@
         </div>
     </div>
 
-        <div x-data="{ shown: false }" x-intersect:enter.full="shown = true">
-            <div class="flex items-center justify-center h-screen">
-                <div x-show="shown" x-transition:enter="transition ease-out duration-500"
-                    x-transition:enter-start="opacity-0 transform scale-90"
-                    x-transition:enter-end="opacity-100 transform scale-100"
-                    x-transition:leave="transition ease-in duration-500"
-                    x-transition:leave-start="opacity-100 transform scale-100"
-                    x-transition:leave-end="opacity-0 transform scale-90">
-                    @auth
+    <div x-data="{ shown: false }" x-intersect:enter.full="shown = true">
+        <div class="flex items-center justify-center min-h-full w-full">
+            <div class="w-full" x-show="shown" x-transition:enter="transition ease-out duration-500"
+                x-transition:enter-start="opacity-0 transform scale-90"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition ease-in duration-500"
+                x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-90">
+                @auth
                     <div class="py-12">
                         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
                             @livewire('post.form')
                         </div>
                     </div>
-                    @endauth
+                @endauth
 
 
-                    <div class="py-12">
-                        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                            @livewire('post.show')
-                        </div>
+                <div class="py-12">
+                    <div class="mx-auto sm:px-6 lg:px-8">
+                        @livewire('post.show')
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 </x-app-layout>

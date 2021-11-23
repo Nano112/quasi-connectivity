@@ -11,3 +11,7 @@
   z-index: 20 !important;
 }
 
+.btn-hover {
+    @apply transition duration-200 ease-in-out transform hover:scale-110 active:scale-99 text-xl
+}
+
