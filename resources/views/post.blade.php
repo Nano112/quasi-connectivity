@@ -51,10 +51,14 @@
                         @livewire('post.form')
                     </div>
 
+                    <div class="mx-auto sm:px-6 lg:px-8">
+                        @livewire('discord-post.show')
+                    </div>
 
                     <div class="mx-auto sm:px-6 lg:px-8">
                         @livewire('post.show')
                     </div>
+
                 </div>
             </div>
         </div>

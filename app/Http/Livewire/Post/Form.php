@@ -32,22 +32,13 @@ class Form extends Component
 
     public function createItem()
     {
-
         $fields = [
             'url' => $this->url,
             'created_utc' => RedditConnector::getCreatedTime($this->url),
             'post_id' => RedditConnector::getId($this->url),
         ];
         $validator = Validator::make($fields, $this->rules, $this->messages)->stopOnFirstFailure(true);
-        if($validator->fails()) {
-            foreach ($validator->errors()->all() as $key => $error) {
-                info("$key: $error");
-            }
-        }
         $validator->validate();
-
-
-
         $post = Post::create($fields);
         $post->save();
 
