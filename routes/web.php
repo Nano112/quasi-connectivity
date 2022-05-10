@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\UserController;
 */
 
 Route::get('/', function() {
-    return view('post');
+    return view('mainpage');
 })->name('home');
 
 
