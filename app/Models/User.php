@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Jetstream\HasProfilePhoto;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -58,4 +60,26 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getRoleColorAttribute()
+    {
+        $colors = [
+            'admin' => '#f44336',
+            'moderator' => '#2196f3',
+            'editor' => '#ffeb3b',
+            'user' => '#4caf50',
+            'default' => '#9e9e9e',
+        ];
+        $roles = $this->getRoleNames();
+        // sort role by importance
+        $roles = collect($roles)->sortByDesc(function ($role) {
+            return [
+                'admin' => 0,
+                'moderator' => 1,
+                'editor' => 2,
+                'user' => 3,
+            ][$role];
+        });
+        return $colors[$roles->first()] ?? $colors['default'];
+    }
 }

@@ -10,17 +10,20 @@ if (Auth::check()) {
 }
 @endphp
 
-<nav x-data="{ open: false }" class="text-white bg-white border-b border-white">
+<nav x-data="{ open: false }" class="text-white bg-gray-900 border-b border-none">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex items-center flex-shrink-0">
+                <div class="flex items-center flex-shrink-0 mr-1">
                     <a href="{{ route('home') }}">
                         <img class="block w-auto h-9" src="{{ asset('img/logo.png') }}" />
                     </a>
                 </div>
+                <h1 class="text-2xl font-semibold text-white leading-tight self-center">
+                    Quasi-Connectivity
+                </h1>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

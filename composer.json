@@ -16,6 +16,7 @@
         "laravel/vapor-ui": "^1.4",
         "livewire/livewire": "^2.5",
         "mediconesystems/livewire-datatables": "^0.6.8",
+        "spatie/laravel-permission": "^5.5",
         "tanthammar/tall-forms": "7.9.9.3",
         "voku/portable-utf8": "^5.4",
         "voku/simple_html_dom": "^4.7"
