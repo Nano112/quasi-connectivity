@@ -9,11 +9,11 @@
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
+
 .z-20-important {
-  z-index: 20 !important;
+    z-index: 20 !important;
 }
 
 .btn-hover {
-    @apply transition duration-200 ease-in-out transform hover:scale-110 active:scale-99 text-xl
+    @apply transition duration-200 ease-in-out transform hover:scale-110 active:scale-99 text-xl;
 }
-

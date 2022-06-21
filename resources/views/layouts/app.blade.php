@@ -13,7 +13,7 @@
         content="Quasi connectivity was last discovered {{ \App\Models\Post::getLastCreatedUtc()->diffForHumans(null, false, false, 3) }}" />
     <meta name="theme-color" content="#FF0000">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Quasi Connectivity') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
