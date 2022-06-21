@@ -2686,6 +2686,9 @@ trix-editor:empty:not(:focus)::before {
 .z-30 {
     z-index: 30;
 }
+.z-20 {
+    z-index: 20;
+}
 .order-last {
     order: 9999;
 }
@@ -2981,11 +2984,6 @@ trix-editor:empty:not(:focus)::before {
 .scale-90 {
     --tw-scale-x: .9;
     --tw-scale-y: .9;
-    transform: var(--tw-transform);
-}
-.scale-75 {
-    --tw-scale-x: .75;
-    --tw-scale-y: .75;
     transform: var(--tw-transform);
 }
 .transform {

@@ -117,11 +117,11 @@
         </div>
     @endforeach
     <div class="flex justify-around py-2">
-    <a href="{{ route('json-dump') }}" class="text-center btn btn-primary">
+    <a href="{{ route('json-dump') }}" class="z-20 text-center btn btn-primary">
         <i class="pr-1 fas fa-eye"></i>
         View JSON
     </a>
-    <a href="https://github.com/Nano112/quasi-connectivity" class="text-center btn btn-primary" target="__blank">
+    <a href="https://github.com/Nano112/quasi-connectivity" class="z-20 text-center btn btn-primary" target="__blank">
         <i class="pr-1 fab fa-github"></i>
         View on GitHub
     </a>
