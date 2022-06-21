@@ -17,11 +17,12 @@ function src_default(Alpine) {
   Alpine.directive("intersect", (el, {value, expression, modifiers}, {evaluateLater, cleanup}) => {
     let evaluate = evaluateLater(expression);
     let options = {
+      rootMargin: getRootMargin(modifiers),
       threshold: getThreshhold(modifiers)
     };
     let observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting && value === "enter" || entry.isIntersecting && value === "leave" || entry.intersectionRatio === 0 && !value)
+        if (entry.isIntersecting === (value === "leave"))
           return;
         evaluate();
         modifiers.includes("once") && observer.disconnect();
@@ -38,7 +39,31 @@ function getThreshhold(modifiers) {
     return 0.99;
   if (modifiers.includes("half"))
     return 0.5;
-  return 0;
+  if (!modifiers.includes("threshold"))
+    return 0;
+  let threshold = modifiers[modifiers.indexOf("threshold") + 1];
+  if (threshold === "100")
+    return 1;
+  if (threshold === "0")
+    return 0;
+  return Number(`.${threshold}`);
+}
+function getLengthValue(rawValue) {
+  let match = rawValue.match(/^(-?[0-9]+)(px|%)?$/);
+  return match ? match[1] + (match[2] || "px") : void 0;
+}
+function getRootMargin(modifiers) {
+  const key = "margin";
+  const fallback = "0px 0px 0px 0px";
+  const index = modifiers.indexOf(key);
+  if (index === -1)
+    return fallback;
+  let values = [];
+  for (let i = 1; i < 5; i++) {
+    values.push(getLengthValue(modifiers[index + i] || ""));
+  }
+  values = values.filter((v) => v !== void 0);
+  return values.length ? values.join(" ").trim() : fallback;
 }
 
 // packages/intersect/builds/module.js

@@ -8,35 +8,35 @@
                 x-transition:leave-start="opacity-100 transform scale-100"
                 x-transition:leave-end="opacity-0 transform scale-90">
 
-                <div class="overflow-hidden bg-base-100 card lg:card-side mb-8 max-h-full lg:max-h-48 mx-2 ">
+                <div class="max-h-full mx-2 mb-8 overflow-hidden bg-base-100 card lg:card-side lg:max-h-48 ">
                     @if (empty($item->video))
-                        <img src="{{ $item->image }}" class="w-full max-w-3xl lg:max-w-xs object-contain bg-gray-300">
+                        <img src="{{ $item->image }}" class="object-contain w-full max-w-3xl bg-gray-300 lg:max-w-xs" loading="lazy">
                     @else
-                        <video class="w-full max-w-3xl lg:max-w-xs object-contain bg-gray-300" controls>
+                        <video class="object-contain w-full max-w-3xl bg-gray-300 lg:max-w-xs" controls preload="none">
                             <source src="{{ $item->video }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     @endif
 
                     <div class="p-0 card-body">
-                        <div class="h-full rounded-r-lg bg-gray-100">
-                            <div class="flex flex-col  ">
-                                <div class="flex shadow p-2 bg-white">
+                        <div class="h-full bg-gray-100 rounded-r-lg">
+                            <div class="flex flex-col ">
+                                <div class="flex p-2 bg-white shadow">
                                     @auth
                                         @if ($item->approved)
                                             <button wire:click="markAsToDo({{ $item->id }})"
-                                                class="mx-1 btn btn-success btn-sm btn-circle mr-2 btn-hover">
+                                                class="mx-1 mr-2 btn btn-success btn-sm btn-circle btn-hover">
                                                 <i class="fas fa-check"></i>
                                             </button>
                                         @else
                                             <button wire:click="markAsDone({{ $item->id }})"
-                                                class="mx-1 btn btn-warning btn-sm btn-circle mr-2 btn-hover">
+                                                class="mx-1 mr-2 btn btn-warning btn-sm btn-circle btn-hover">
                                                 <i class="fas fa-clock"></i>
                                             </button>
                                         @endif
                                         <div x-cloak x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
                                             <button type="button"
-                                                class="btn btn-danger btn-sm btn-circle mx-1 btn-hover btn-error"
+                                                class="mx-1 btn btn-danger btn-sm btn-circle btn-hover btn-error"
                                                 @click="showModal = true"><i class="fas fa-trash"></i></button>
                                             <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
                                                 x-show="showModal">
@@ -51,13 +51,13 @@
                                                             Are you sure you want to delete this post ?
                                                         </h5>
                                                         <div class="self-center text-left">
-                                                            <p class="text-gray-400 text-xs px-2 self-center">
+                                                            <p class="self-center px-2 text-xs text-gray-400">
                                                                 Post id:{{ $item->id }}
                                                             </p>
-                                                            <p class="text-gray-400 text-xs px-2 self-center">
+                                                            <p class="self-center px-2 text-xs text-gray-400">
                                                                 Post title:{{ $item->title }}
                                                             </p>
-                                                            <p class="text-gray-400 text-xs px-2 self-center">
+                                                            <p class="self-center px-2 text-xs text-gray-400">
                                                                 Post created :{{ $item->created_utc }}
                                                             </p>
                                                         </div>
@@ -77,29 +77,29 @@
                                     @endauth
 
                                     <a href="{{ $item->url }}" target="__blank"
-                                        class="drawer-button btn btn-info btn-sm btn-circle mx-1 btn-hover">
+                                        class="mx-1 drawer-button btn btn-info btn-sm btn-circle btn-hover">
                                         <i class="fas fa-link"></i>
                                     </a>
 
                                     @if ($item->approved)
                                         <div
-                                            class="mx-1 badge bg-success border-none py-4 px-2 text-xs font-bold leading-3 text-center">
-                                            <i class="fas fa-check pr-1 fa-xs"></i>
+                                            class="px-2 py-4 mx-1 text-xs font-bold leading-3 text-center border-none badge bg-success">
+                                            <i class="pr-1 fas fa-check fa-xs"></i>
                                             Approved
                                         </div>
                                     @else
                                         <div
-                                            class="mx-1 badge bg-warning border-none py-4 px-2 text-xs font-bold leading-3 text-center">
-                                            <i class="fas fa-clock pr-1 fa-xs"></i>
+                                            class="px-2 py-4 mx-1 text-xs font-bold leading-3 text-center border-none badge bg-warning">
+                                            <i class="pr-1 fas fa-clock fa-xs"></i>
                                             Wating approval
                                         </div>
                                     @endif
 
                                     <div class="self-center">
-                                        <p class="text-gray-400 text-xs px-2 self-center">
+                                        <p class="self-center px-2 text-xs text-gray-400">
                                             Post id:{{ $item->id }}
                                         </p>
-                                        <p class="text-gray-400 text-xs px-2 self-center">
+                                        <p class="self-center px-2 text-xs text-gray-400">
                                             Post created :{{ $item->created_utc }}
                                         </p>
                                     </div>
@@ -116,4 +116,14 @@
             </div>
         </div>
     @endforeach
+    <div class="flex justify-around py-2">
+    <a href="{{ route('json-dump') }}" class="text-center btn btn-primary">
+        <i class="pr-1 fas fa-eye"></i>
+        View JSON
+    </a>
+    <a href="https://github.com/Nano112/quasi-connectivity" class="text-center btn btn-primary" target="__blank">
+        <i class="pr-1 fab fa-github"></i>
+        View on GitHub
+    </a>
+</div>
 </div>
