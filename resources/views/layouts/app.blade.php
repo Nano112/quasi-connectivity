@@ -8,7 +8,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://quasi-connectivity.com" />
         <meta property="og:image" content="http://quasi-connectivity/img/logo.png" />
-        <meta property="og:description" content="Quasi connectivity was last discovered t:{{ \App\Models\Post::getLastCreatedUtc() }}:R" />
+        <meta property="og:description" content="Quasi connectivity was last discovered <t:{{ \App\Models\Post::getLastCreatedUtc() }}:R>" />
         <meta name="theme-color" content="#FF0000">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
