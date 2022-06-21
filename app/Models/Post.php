@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Http\Utils\RedditConnector;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -14,6 +14,7 @@ class Post extends Model
     protected $casts = [
         'created_utc' => 'datetime',
     ];
+
 
     public static function getLastCreatedUtc()
     {
@@ -33,7 +34,7 @@ class Post extends Model
         return Cache::rememberForever("$this->post_id-title", function () {
             try {
                 return RedditConnector::getTitle($this->url);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return null;
             }
         });
@@ -44,7 +45,7 @@ class Post extends Model
         return Cache::rememberForever("$this->post_id-author", function () {
             try {
                 return RedditConnector::getAuthor($this->url);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return null;
             }
         });
@@ -55,7 +56,7 @@ class Post extends Model
         return Cache::rememberForever("$this->post_id-subreddit", function () {
             try {
                 return RedditConnector::getSubreddit($this->url);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return null;
             }
         });
@@ -66,7 +67,7 @@ class Post extends Model
         return Cache::rememberForever("$this->post_id-score", function () {
             try {
                 return RedditConnector::getScore($this->url);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return null;
             }
         });
@@ -77,7 +78,7 @@ class Post extends Model
         return Cache::rememberForever("$this->post_id-comment_count", function () {
             try {
                 return RedditConnector::getCommentCount($this->url);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return null;
             }
         });
@@ -88,7 +89,7 @@ class Post extends Model
         return Cache::rememberForever("$this->post_id-description", function () {
             try {
                 return RedditConnector::getDescription($this->url);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return null;
             }
         });
@@ -99,7 +100,7 @@ class Post extends Model
         return Cache::rememberForever("$this->post_id-image", function () {
             try {
                 return RedditConnector::getImage($this->url);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return null;
             }
         });
@@ -110,7 +111,7 @@ class Post extends Model
         return Cache::rememberForever("$this->post_id-video", function () {
             try {
                 return RedditConnector::getVideo($this->url);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return null;
             }
         });
