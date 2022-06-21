@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div x-data="{isPost : true}">
+    <div x-cloak x-data="{isPost : $persist(true)}">
         @animate_opacity(isPost)
-        {{--  @include('post')  --}}
-        @include('help')
+        @include('post')
+        {{--  @include('help')  --}}
         @endanimate
         @animate_opacity(!isPost)
         @include('help')
