@@ -4,6 +4,7 @@ environments:
     production:
         memory: 1024
         cli-memory: 512
+        warm: 1
         runtime: 'php-8.0:al2'
         domain: 'quasi-connectivity.com'
         database: 'quasi-connectivity'

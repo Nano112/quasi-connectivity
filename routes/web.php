@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Http\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
@@ -16,8 +17,13 @@ use App\Http\Controllers\Admin\UserController;
 */
 
 Route::get('/', function() {
-    return view('post');
+    return view('mainpage');
 })->name('home');
+
+Route::get('/json-dump', function(){
+    $posts = Post::all();
+    return response()->json($posts);
+})->name('json-dump');
 
 
 Route::group(['prefix' => 'admin'], function () {
