@@ -44,7 +44,6 @@
 </head>
 
 <body class="font-sans antialiased">
-    <x-tall-notification />
     <x-jet-banner />
 
     <div class="min-h-screen bg-base-content">
