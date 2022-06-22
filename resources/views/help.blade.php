@@ -10,6 +10,11 @@ $helpMembers = [
                 'url' => 'https://github.com/Nano112',
             ],
             [
+                'socialName' => 'youtube',
+                'logo' => 'fa-youtube',
+                'url' => 'https://www.youtube.com/channel/UCB1Oh8YvDiqxIser6C31u-w',
+            ],
+            [
                 'socialName' => 'discord',
                 'logo' => 'fa-discord',
                 'url' => 'https://discord.com/users/117732348455419911',
@@ -47,7 +52,11 @@ $helpMembers = [
         'displayName' => 'Feenix',
         'uuid' => 'a25e8a24-8657-4238-885f-2641d19d8e57',
         'socials' => [
-
+            [
+               'socialName' => 'youtube',
+               'logo' => 'fa-youtube',
+               'url' => 'https://www.youtube.com/channel/UCGdIv4sAuuEqp2z-OtxHbhw',
+            ],
         ],
     ],
     'Storm_' => [
