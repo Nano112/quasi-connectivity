@@ -17,3 +17,28 @@
 .btn-hover {
     @apply transition duration-200 ease-in-out transform hover:scale-110 active:scale-99 text-xl;
 }
+
+.help-members {
+    @apply sm:flex self-center;
+    .help-member {
+        @apply m-3;
+        .help-member-image {
+            @apply rounded-lg border-4 m-auto;
+            width: 96px;
+        }
+
+        .help-member-name {
+            @apply flex justify-evenly my-1;
+        }
+
+        .help-member-socials {
+
+            @apply flex justify-evenly mt-1;
+
+            .help-member-social {
+                @apply flex transition ease-in-out delay-150 hover:scale-110 duration-300;
+            }
+        }
+
+    }
+}

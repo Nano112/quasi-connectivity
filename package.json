@@ -29,9 +29,7 @@
     "dependencies": {
         "@alpinejs/intersect": "^3.10.2",
         "@alpinejs/persist": "^3.5.1",
-        "@fortawesome/fontawesome-free": "^5.15.4",
-        "daisyui": "^1.16.2",
-        "gsap": "^3.10.4",
-        "scrollxp": "^2.0.7"
+        "@fortawesome/fontawesome-free": "^6.1.1",
+        "daisyui": "^1.16.2"
     }
 }
