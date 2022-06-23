@@ -2,7 +2,7 @@ id: 26162
 name: quasi-connectivity
 environments:
     production:
-        memory: 1024
+        memory: 2048
         cli-memory: 512
         warm: 1
         runtime: 'php-8.0:al2'
