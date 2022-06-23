@@ -2713,6 +2713,14 @@ trix-editor:empty:not(:focus)::before {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+.my-3 {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+.my-2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
 .mx-2 {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -2720,10 +2728,6 @@ trix-editor:empty:not(:focus)::before {
 .mx-1 {
     margin-left: 0.25rem;
     margin-right: 0.25rem;
-}
-.my-3 {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
 }
 .ml-3 {
     margin-left: 0.75rem;
@@ -2797,11 +2801,11 @@ trix-editor:empty:not(:focus)::before {
 .mb-12 {
     margin-bottom: 3rem;
 }
-.-mt-px {
-    margin-top: -1px;
-}
 .mb-8 {
     margin-bottom: 2rem;
+}
+.-mt-px {
+    margin-top: -1px;
 }
 .block {
     display: block;
@@ -2931,17 +2935,17 @@ trix-editor:empty:not(:focus)::before {
 .max-w-xl {
     max-width: 36rem;
 }
-.max-w-sm {
-    max-width: 24rem;
-}
-.max-w-6xl {
-    max-width: 72rem;
-}
 .max-w-3xl {
     max-width: 48rem;
 }
 .max-w-none {
     max-width: none;
+}
+.max-w-sm {
+    max-width: 24rem;
+}
+.max-w-6xl {
+    max-width: 72rem;
 }
 .max-w-2xl {
     max-width: 42rem;
@@ -2986,6 +2990,11 @@ trix-editor:empty:not(:focus)::before {
 .scale-90 {
     --tw-scale-x: .9;
     --tw-scale-y: .9;
+    transform: var(--tw-transform);
+}
+.scale-102 {
+    --tw-scale-x: 1.02;
+    --tw-scale-y: 1.02;
     transform: var(--tw-transform);
 }
 .transform {
@@ -3240,10 +3249,6 @@ trix-editor:empty:not(:focus)::before {
     --tw-bg-opacity: 1;
     background-color: hsla(var(--p) / var(--tw-bg-opacity));
 }
-.bg-base-content {
-    --tw-bg-opacity: 1;
-    background-color: hsla(var(--bc) / var(--tw-bg-opacity));
-}
 .bg-base-100 {
     --tw-bg-opacity: 1;
     background-color: hsla(var(--b1) / var(--tw-bg-opacity));
@@ -3263,6 +3268,10 @@ trix-editor:empty:not(:focus)::before {
 .bg-warning {
     --tw-bg-opacity: 1;
     background-color: hsla(var(--wa) / var(--tw-bg-opacity));
+}
+.bg-base-content {
+    --tw-bg-opacity: 1;
+    background-color: hsla(var(--bc) / var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
     --tw-bg-opacity: 0.25;
@@ -3400,6 +3409,9 @@ trix-editor:empty:not(:focus)::before {
 .pb-1 {
     padding-bottom: 0.25rem;
 }
+.pr-1 {
+    padding-right: 0.25rem;
+}
 .pt-0\.5 {
     padding-top: 0.125rem;
 }
@@ -3408,9 +3420,6 @@ trix-editor:empty:not(:focus)::before {
 }
 .pt-8 {
     padding-top: 2rem;
-}
-.pr-1 {
-    padding-right: 0.25rem;
 }
 .text-left {
     text-align: left;
@@ -3558,6 +3567,10 @@ trix-editor:empty:not(:focus)::before {
     --tw-text-opacity: 1;
     color: hsla(var(--nc) / var(--tw-text-opacity));
 }
+.text-black {
+    --tw-text-opacity: 1;
+    color: rgba(0, 0, 0, var(--tw-text-opacity));
+}
 .text-gray-100 {
     --tw-text-opacity: 1;
     color: rgba(243, 244, 246, var(--tw-text-opacity));
@@ -3573,10 +3586,6 @@ trix-editor:empty:not(:focus)::before {
 .text-gray-300 {
     --tw-text-opacity: 1;
     color: rgba(209, 213, 219, var(--tw-text-opacity));
-}
-.text-black {
-    --tw-text-opacity: 1;
-    color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 .text-blue-600 {
     --tw-text-opacity: 1;
