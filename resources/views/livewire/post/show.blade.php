@@ -10,9 +10,9 @@
 
                 <div class="max-h-full mx-2 mb-8 overflow-hidden bg-base-100 card lg:card-side lg:max-h-48 ">
                     @if (empty($item->video))
-                        <img src="{{ $item->image }}" class="object-contain w-full max-w-3xl bg-gray-300 lg:max-w-xs" loading="lazy">
+                        <img src="{{ $item->image }}" class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102" loading="lazy">
                     @else
-                        <video class="object-contain w-full max-w-3xl bg-gray-300 lg:max-w-xs" controls preload="none">
+                        <video class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102"  preload="metadata">
                             <source src="{{ $item->video }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
