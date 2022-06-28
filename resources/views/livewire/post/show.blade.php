@@ -12,10 +12,7 @@
                     @if (empty($item->video))
                         <img src="{{ $item->image }}" class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102" loading="lazy">
                     @else
-                        <video class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102"  preload="metadata">
-                            <source src="{{ $item->video }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <img src="http://api.quasi-connectivity.com/?video_url={{ $item->video }}" class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102" loading="lazy">
                     @endif
 
                     <div class="p-0 card-body">
