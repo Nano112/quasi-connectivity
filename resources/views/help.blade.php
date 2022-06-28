@@ -152,7 +152,9 @@ $segments = [
                             @if($segment['img_url'])
                                 <img src="{{ $segment['img_url'] }}" alt=" {{ $segment['title'] }}"
                                 class="p-4 sm:max-w-xl sm:max-h-xl object-contain m-auto md:m-0 md:w-1/2 md:h-1/2 {{ $loop->iteration % 2 ? 'order-last' : '' }}"
-                                style="max-height: 50vh;">
+                                style="max-height: 50vh;"
+                                alt="{{ $segment['title'] }}"
+                                loading="lazy">
                             @endif
                             <div class="self-center p-4 m-auto text-sm sm:text-lg md:m-0 xs:max-w-full {{ $segment['img_url'] ? 'max-w-xl' : '' }}">
                                 {!! $segment['content'] !!}
