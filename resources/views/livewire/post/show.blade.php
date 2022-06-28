@@ -10,9 +10,9 @@
 
                 <div class="max-h-full mx-2 mb-8 overflow-hidden bg-base-100 card lg:card-side lg:max-h-48 ">
                     @if (empty($item->video))
-                        <img src="{{ $item->image }}" class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102" loading="lazy">
+                        <img src="{{ $item->image }}" class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102" loading="lazy" alt="Quasi Connectivity: {{ $item->title }}">
                     @else
-                        <img src="http://api.quasi-connectivity.com/?video_url={{ $item->video }}" class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102" loading="lazy">
+                        <img src="http://api.quasi-connectivity.com/?video_url={{ $item->video }}" class="object-cover w-full max-w-3xl bg-gray-300 lg:max-w-xs scale-102" loading="lazy" alt="Quasi Connectivity: {{ $item->title }}">
                     @endif
 
                     <div class="p-0 card-body">
