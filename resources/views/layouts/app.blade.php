@@ -11,6 +11,8 @@
     <meta property="og:image" content="http://quasi-connectivity/img/logo.png" />
     <meta property="og:description"
         content="Quasi connectivity was last discovered {{ \App\Models\Post::getLastCreatedUtc()->diffForHumans(null, false, false, 3) }}" />
+    <meta name="description"
+        content="Quasi connectivity was last discovered {{ \App\Models\Post::getLastCreatedUtc()->diffForHumans(null, false, false, 3) }}. Quasi connectivity is minecraft mecanic where one component is powered by a non adjacent component." />
     <meta name="theme-color" content="#FF0000">
 
     <title>{{ config('app.name', 'Quasi Connectivity') }}</title>
