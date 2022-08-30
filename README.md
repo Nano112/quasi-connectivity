@@ -48,7 +48,7 @@
     ```bash
     sail npm install
     ```
-All done
+
 
 
 
