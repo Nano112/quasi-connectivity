@@ -168,7 +168,7 @@ $segments = [
 
 
 
-    <button @click="isPost = true; window.scrollTo(0, 0)"
+    <button @click="isPost = true; window.scrollTo(0, 0);window.history.pushState('', '', '/')"
         class=" m-2 bg-primary text-white font-bold py-2 px-4 rounded-full w-[fit-content] self-center fixed z-10 bottom-0">
         <span class="inline-block font-bold text-white rounded-full bg-primary">
             <i class="fas fa-arrow-left"></i>
