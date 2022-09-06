@@ -30,7 +30,7 @@
                     <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         @livewire('post.counter')
                     </div>
-                    <button @click="isPost = false; window.scrollTo(0, 0)" class="bg-primary text-white font-bold py-2 px-4 rounded-full w-[fit-content] self-center z-20">
+                    <button @click="isPost = false; window.scrollTo(0, 0);window.history.pushState('', '', '/help');" class="bg-primary text-white font-bold py-2 px-4 rounded-full w-[fit-content] self-center z-20">
                             <span class="inline-block px-4 py-2 font-bold text-white rounded-full bg-primary">
                                 What is quasi connectivity?
                             </span>

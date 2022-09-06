@@ -20,6 +20,10 @@ Route::get('/', function() {
     return view('mainpage');
 })->name('home');
 
+Route::get('/help', function() {
+    return view('mainpage', ['post' => false]);
+})->name('help');
+
 Route::get('/json-dump', function(){
     $posts = Post::all();
     return response()->json($posts);
