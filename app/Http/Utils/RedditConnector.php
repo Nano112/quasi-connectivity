@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 #make a class to call reddit's api
 class RedditConnector
 {
+    const VALID_SUBREDDITS = ['r/redstone', 'r/technicalminecraft', 'r/minecraft', 'r/qualityredstone'];
 
     #function that cleans the url from unnecessary parameters
     public static function cleanUrl($url)
@@ -43,15 +44,20 @@ class RedditConnector
         return strpos($url, 'comments') !== false;
     }
 
-    #function that checks if the url is a r/redstone url
+    #function that checks if the url is a reddit subreddit url
     public static function isValidRedditSubredditUrl($url)
     {
         if (!self::isValidRedditUrl($url)) {
             return false;
         }
-        return strpos($url, 'r/redstone') !== false;
+        foreach (VALID_SUBREDDITS as $subreddit) {
+            if (strpos($url, $subreddit) !== false) {
+                return true;
+            }
+        }
     }
 
+    #function that gets the post from the url
     public static function getPosts($url)
     {
         $url = self::cleanUrl($url);
