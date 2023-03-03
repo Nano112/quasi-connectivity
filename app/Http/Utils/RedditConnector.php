@@ -55,6 +55,7 @@ class RedditConnector
                 return true;
             }
         }
+        return false;
     }
 
     #function that gets the post from the url
